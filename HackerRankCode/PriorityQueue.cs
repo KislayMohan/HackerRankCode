@@ -79,7 +79,7 @@ namespace HackerRankCode
             {
                 curr = rightChild;
             }
-
+            
             if (curr != pos)
             {
                 Swap(curr, pos);

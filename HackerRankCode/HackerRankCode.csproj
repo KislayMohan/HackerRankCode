@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QHeap.cs" />
     <Compile Include="QueueUsingTwoStacks.cs" />
+    <Compile Include="RunningMedian.cs" />
     <Compile Include="SendMail.cs" />
     <Compile Include="SendMessage.cs" />
     <Compile Include="SimpleTextEditor.cs" />
