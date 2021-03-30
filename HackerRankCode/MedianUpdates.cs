@@ -24,7 +24,176 @@ namespace HackerRankCode
 
             }
             Console.WriteLine("--------------------------------");
-            Median(s, x);
+            Median1(s, x);
+        }
+
+        private static void Median1(string[] a, int[] x)
+        {
+            var maxSortedData = new SortedDictionary<int, List<int>>(); // Read the max value from end on dictionary
+            var minSortedData = new SortedDictionary<int, List<int>>(); // Read the min value from end of dictionary
+            int maxSortedDataCount = 0, minSortedDataCount = 0;
+            for (int i = 0; i < a.Count(); i++)
+            {
+                switch (a[i])
+                {
+                    case "a":
+                        if (maxSortedDataCount == 0)
+                        {
+                            maxSortedData[x[i]] = new List<int> { x[i] };
+                            maxSortedDataCount++;
+                        }
+                        else
+                        {
+                            if (minSortedDataCount > 0 && minSortedData.First().Key < x[i])
+                            {
+                                var movableData = minSortedData.First();
+                                if (movableData.Value.Count > 1)
+                                {
+                                    minSortedData[movableData.Key].RemoveAt(minSortedData[movableData.Key].Count - 1);
+                                }
+                                else
+                                {
+                                    minSortedData.Remove(movableData.Key);
+                                }
+                                if (!maxSortedData.ContainsKey(movableData.Key))
+                                {
+                                    maxSortedData.Add(movableData.Key, new List<int> { movableData.Value.First() });
+                                }
+                                else
+                                {
+                                    maxSortedData[movableData.Key].Add(movableData.Value.First());
+                                }
+
+                                maxSortedDataCount++;
+
+
+                                if (!minSortedData.ContainsKey(x[i]))
+                                {
+                                    minSortedData[x[i]] = new List<int> { x[i] };
+                                }
+                                else
+                                {
+                                    minSortedData[x[i]].Add(x[i]);
+                                }
+                            }
+                            else
+                            {
+                                if (!maxSortedData.ContainsKey(x[i]))
+                                {
+                                    maxSortedData[x[i]] = new List<int> { x[i] };
+                                }
+                                else
+                                {
+                                    maxSortedData[x[i]].Add(x[i]);
+                                }
+                                maxSortedDataCount++;
+                            }
+                        }
+                        break;
+
+                    case "r":
+                        if (maxSortedData.ContainsKey(x[i]))
+                        {
+                            if (maxSortedData[x[i]].Count == 1)
+                            {
+                                maxSortedData.Remove(x[i]);
+                            }
+                            else
+                            {
+                                maxSortedData[x[i]].RemoveAt(maxSortedData[x[i]].Count - 1);
+                            }
+                            maxSortedDataCount--;
+                        }
+                        else if (minSortedData.ContainsKey(x[i]))
+                        {
+                            if (minSortedData[x[i]].Count == 1)
+                            {
+                                minSortedData.Remove(x[i]);
+                            }
+                            else
+                            {
+                                minSortedData[x[i]].RemoveAt(minSortedData[x[i]].Count - 1);
+                            }
+                            minSortedDataCount--;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong!");
+                            continue;
+                        }
+                        break;
+                }
+
+                if (maxSortedDataCount > minSortedDataCount && maxSortedDataCount - minSortedDataCount > 1)
+                {
+                    var data = maxSortedData.Last();
+                    if (data.Value.Count > 1)
+                    {
+                        maxSortedData[data.Key].RemoveAt(maxSortedData[data.Key].Count - 1);
+                    }
+                    else
+                    {
+                        maxSortedData.Remove(data.Key);
+                    }
+                    if (!minSortedData.ContainsKey(data.Key))
+                    {
+                        minSortedData.Add(data.Key, new List<int> { data.Value.First() });
+                    }
+                    else
+                    {
+                        minSortedData[data.Key].Add(data.Value.First());
+                    }
+                    maxSortedDataCount--;
+                    minSortedDataCount++;
+                }
+                else if (minSortedDataCount > maxSortedDataCount && minSortedDataCount - maxSortedDataCount > 1)
+                {
+                    var data = minSortedData.Last();
+                    if (data.Value.Count > 1)
+                    {
+                        minSortedData[data.Key].RemoveAt(minSortedData[data.Key].Count - 1);
+                    }
+                    else
+                    {
+                        minSortedData.Remove(data.Key);
+                    }
+                    if (!maxSortedData.ContainsKey(data.Key))
+                    {
+                        maxSortedData.Add(data.Key, new List<int> { data.Value.First() });
+                    }
+                    else
+                    {
+                        maxSortedData[data.Key].Add(data.Value.First());
+                    }
+
+                    maxSortedDataCount++;
+                    minSortedDataCount--;
+                }
+
+                if (minSortedDataCount <= 0 && maxSortedDataCount <= 0)
+                {
+                    Console.WriteLine("Wrong!");
+                    continue;
+                }
+
+                if (minSortedDataCount == maxSortedDataCount && minSortedDataCount > 0)
+                {
+                    var minData = minSortedData.First().Value.First();
+                    var maxData = maxSortedData.Last().Value.First();
+                    Console.WriteLine(decimal.Divide((long)minData + (long)maxData, 2));
+                }
+                else
+                {
+                    if (maxSortedDataCount > minSortedDataCount && maxSortedDataCount > 0)
+                    {
+                        Console.WriteLine(maxSortedData.Last().Value.First());
+                    }
+                    else if(minSortedDataCount > 0)
+                    {
+                        Console.WriteLine(minSortedData.First().Value.First());
+                    }
+                }
+            }
         }
 
         private static void Median(string[] a, int[] x)

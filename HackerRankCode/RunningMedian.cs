@@ -35,5 +35,73 @@ namespace HackerRankCode
 
             return result;
         }
+
+        private static void BuildMinHeap(List<int> numList)
+        {
+            var startIndex = numList.Count / 2 - 1;
+            for (int i = startIndex; i >= 0; i--)
+            {
+                MinHeapify(numList, numList.Count, i);
+            }
+        }
+
+        private static void MinHeapify(List<int> numList, int length, int i)
+        {
+            var smallest = i;
+            var leftChild = 2 * i + 1;
+            var rightChild = 2 * i + 2;
+            if (leftChild < length && numList[leftChild] < numList[smallest])
+            {
+                smallest = leftChild;
+            }
+
+            if (rightChild < length && numList[rightChild] < numList[smallest])
+            {
+                smallest = rightChild;
+            }
+
+            if (smallest != i)
+            {
+                var temp = numList[i];
+                numList[i] = numList[smallest];
+                numList[smallest] = temp;
+
+                MinHeapify(numList, length, smallest);
+            }
+        }
+
+        private static void BuildMaxHeap(List<int> numList)
+        {
+            var startIndex = numList.Count / 2 - 1;
+            for (int i = startIndex; i >= 0; i--)
+            {
+                MaxHeapify(numList, numList.Count, i);
+            }
+        }
+
+        private static void MaxHeapify(List<int> numList, int length, int i)
+        {
+            var largest = i;
+            var leftChild = 2 * i + 1;
+            var rightChild = 2 * i + 2;
+            if (leftChild < length && numList[leftChild] > numList[largest])
+            {
+                largest = leftChild;
+            }
+
+            if (rightChild < length && numList[rightChild] > numList[largest])
+            {
+                largest = rightChild;
+            }
+
+            if (largest != i)
+            {
+                var temp = numList[i];
+                numList[i] = numList[largest];
+                numList[largest] = temp;
+
+                MaxHeapify(numList, length, largest);
+            }
+        }
     }
 }
