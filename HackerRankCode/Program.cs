@@ -71,7 +71,7 @@ namespace HackerRankCode
             //BalancedForest.BalancedForestData();
             //ArrayPairs.ArrayPairsInput();
             //ArrayQueries.ArrayQuerySol();
-            MedianUpdates.MedianUpdateSol();
+            //MedianUpdates.MedianUpdateSol();
             //Console.WriteLine(1 % 2);
             //long val1 = -2147483648;
             //long val2 = -2147483649;
@@ -84,6 +84,7 @@ namespace HackerRankCode
             //Console.WriteLine(result2);
             //NiteshAmazon.TakeInput();
             //JesseAndCookies.JesseAndCookiesFlow();
+            RunningMedian.RunningMedianFlow();
             Console.ReadLine();
         }
     }
