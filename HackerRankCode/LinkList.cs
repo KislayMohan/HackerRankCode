@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HackerRankCode
 {
-    class SinglyLinkedListNode
+    public class SinglyLinkedListNode
     {
         public int data;
         public SinglyLinkedListNode next;
@@ -19,7 +19,7 @@ namespace HackerRankCode
         }
     }
 
-    class SinglyLinkedList
+    public class SinglyLinkedList
     {
         public SinglyLinkedListNode head;
         public SinglyLinkedListNode tail;
@@ -70,7 +70,7 @@ namespace HackerRankCode
             }
         }
 
-        static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data)
+        public static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data)
         {
             var insertNode = new SinglyLinkedListNode(data);
             if (llist == null)
@@ -83,6 +83,67 @@ namespace HackerRankCode
                 insertNode.next = llist;
             }
             return insertNode;
+        }
+
+        public static SinglyLinkedListNode Reverse(SinglyLinkedListNode head)
+        {
+            SinglyLinkedListNode currentNode = head;
+            SinglyLinkedListNode nextNode = null;
+            SinglyLinkedListNode prevNode = null;
+            while (currentNode != null)
+            {
+                nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+            head = prevNode;
+            return head;
+        }
+
+        public static void ReversePrint(SinglyLinkedListNode head)
+        {
+            SinglyLinkedListNode currentNode = head;
+            SinglyLinkedListNode nextNode = null;
+            SinglyLinkedListNode prevNode = null;
+            while (currentNode != null)
+            {
+                nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+            head = prevNode;
+            while (head != null)
+            {
+                Console.WriteLine(head.data);
+                head = head.next;
+            }
+        }
+
+        public static long ConvertBinaryToNumberUsingLinklist(SinglyLinkedListNode head)
+        {
+            long result = 0;
+            double counter = 0;
+            SinglyLinkedListNode currentNode = head;
+            SinglyLinkedListNode nextNode = null;
+            SinglyLinkedListNode prevNode = null;
+            while (currentNode != null)
+            {
+                nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+            head = prevNode;
+            while (head != null)
+            {
+                result += (long)head.data * (long)Math.Pow(2, counter);
+                counter++;
+                head = head.next;
+            }
+
+            return result;
         }
     }
 }
