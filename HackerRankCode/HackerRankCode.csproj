@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetweenTwoSets.cs" />
+    <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
+    <Compile Include="DivisibleSumPairs.cs" />
     <Compile Include="EqualStack.cs" />
+    <Compile Include="GradingStudents.cs" />
     <Compile Include="GraphComponents.cs" />
     <Compile Include="JesseAndCookies.cs" />
     <Compile Include="LargestRectangle.cs" />
@@ -75,6 +80,7 @@
     <Compile Include="SendMessage.cs" />
     <Compile Include="SimpleTextEditor.cs" />
     <Compile Include="StackProblems.cs" />
+    <Compile Include="SubArrayDivision.cs" />
     <Compile Include="SwapNode.cs" />
     <Compile Include="TreeProblems.cs" />
   </ItemGroup>
