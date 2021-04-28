@@ -87,8 +87,10 @@ namespace HackerRankCode
             //JesseAndCookies.JesseAndCookiesFlow();
             //RunningMedian.RunningMedianFlow();
             //SubArrayDivision.SubArrayDivisionFlow();
-            DivisibleSumPairs.DivisibleSumPairsFlow();
+            //DivisibleSumPairs.DivisibleSumPairsFlow();
             //BetweenTwoSets.GetTotalXFlow();
+            //ClimbingLeaderboard.ClimbingLeaderboardFlow();
+            //FindDigits.FindDigitsFlow();
             Console.ReadLine();
         }
     }

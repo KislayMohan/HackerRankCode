@@ -44,11 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppendAndDelete.cs" />
     <Compile Include="BetweenTwoSets.cs" />
     <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
+    <Compile Include="ClimbingLeaderboard.cs" />
     <Compile Include="DivisibleSumPairs.cs" />
     <Compile Include="EqualStack.cs" />
+    <Compile Include="FindDigits.cs" />
     <Compile Include="GradingStudents.cs" />
     <Compile Include="GraphComponents.cs" />
     <Compile Include="JesseAndCookies.cs" />
@@ -69,6 +72,8 @@
     <Compile Include="KittyTreeCalculation.cs" />
     <Compile Include="LinkList.cs" />
     <Compile Include="MedianUpdates.cs" />
+    <Compile Include="NonDivisibleSubset.cs" />
+    <Compile Include="PickingNumbers.cs" />
     <Compile Include="PoisonousPlant.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
@@ -83,6 +88,8 @@
     <Compile Include="SubArrayDivision.cs" />
     <Compile Include="SwapNode.cs" />
     <Compile Include="TreeProblems.cs" />
+    <Compile Include="UtopianTree.cs" />
+    <Compile Include="ValleyCount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
