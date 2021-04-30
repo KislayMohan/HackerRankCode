@@ -79,6 +79,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QHeap.cs" />
+    <Compile Include="QueenAttack.cs" />
     <Compile Include="QueueUsingTwoStacks.cs" />
     <Compile Include="RunningMedian.cs" />
     <Compile Include="SendMail.cs" />
