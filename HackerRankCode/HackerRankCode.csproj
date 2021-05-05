@@ -88,6 +88,7 @@
     <Compile Include="SendMessage.cs" />
     <Compile Include="SimpleTextEditor.cs" />
     <Compile Include="StackProblems.cs" />
+    <Compile Include="StringEncryption.cs" />
     <Compile Include="SubArrayDivision.cs" />
     <Compile Include="SwapNode.cs" />
     <Compile Include="TreeProblems.cs" />

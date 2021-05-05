@@ -92,6 +92,7 @@ namespace HackerRankCode
             //ClimbingLeaderboard.ClimbingLeaderboardFlow();
             //FindDigits.FindDigitsFlow();
             //QueenAttack.QueenAttackFlow();
+            StringEncryption.StringEncryptionFlow();
             Console.ReadLine();
         }
     }
