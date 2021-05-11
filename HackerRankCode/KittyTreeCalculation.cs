@@ -119,9 +119,9 @@ namespace HackerRankCode
 
         public void KittyTree()
         {
-            var content = File.ReadAllLines("../../input.txt");
-            //var content = Console.ReadLine();
+            var content = File.ReadAllLines("../../KittyTreeCalculation/input.txt");
             var input = content[0].Split(' ');
+            //var content = Console.ReadLine();
             //var input = content.Split(' ');
             var nodeCount = Convert.ToInt32(input[0]);
             var setCount = Convert.ToInt32(input[1]);
@@ -185,7 +185,7 @@ namespace HackerRankCode
             //}
             stopwatch.Stop();
             Console.WriteLine(stopwatch.Elapsed);
-            File.WriteAllLines("../../output.txt", output);
+            File.WriteAllLines("../../KittyTreeCalculation/output.txt", output);
             //Console.ReadLine();
         }
 

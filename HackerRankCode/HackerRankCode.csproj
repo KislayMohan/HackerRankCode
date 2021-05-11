@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ACMICPCTeam.cs" />
     <Compile Include="AppendAndDelete.cs" />
+    <Compile Include="ArrayRotation.cs" />
     <Compile Include="BetweenTwoSets.cs" />
     <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="LargestRectangle.cs" />
     <Compile Include="LinklistCycleDetection.cs" />
     <Compile Include="MaxStackElement.cs" />
+    <Compile Include="MinimumSwapToSort.cs" />
     <Compile Include="NewYearChaos.cs" />
     <Compile Include="NiteshAmazon.cs" />
     <Compile Include="AndXorOr.cs" />
