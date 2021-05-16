@@ -54,6 +54,7 @@
     <Compile Include="DivisibleSumPairs.cs" />
     <Compile Include="EqualStack.cs" />
     <Compile Include="FindDigits.cs" />
+    <Compile Include="FindLCA.cs" />
     <Compile Include="GradingStudents.cs" />
     <Compile Include="GraphComponents.cs" />
     <Compile Include="JesseAndCookies.cs" />

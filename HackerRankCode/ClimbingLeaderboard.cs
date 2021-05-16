@@ -14,11 +14,28 @@ namespace HackerRankCode
             List<int> ranked = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(rankedTemp => Convert.ToInt32(rankedTemp)).ToList();
             int playerCount = Convert.ToInt32(Console.ReadLine().Trim());
             List<int> player = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(playerTemp => Convert.ToInt32(playerTemp)).ToList();
-            List<int> result = GetRank1(ranked, player);
+            List<int> result = GetRank(ranked, player);
             Console.WriteLine(string.Join("\n", result));
         }
 
         private static List<int> GetRank(List<int> ranked, List<int> player)
+        {
+            var rankList = new List<int>();
+            var distinctRank = new HashSet<int>(ranked).ToArray();
+            Array.Sort(distinctRank);
+            int i = 0;
+            foreach (var item in player)
+            {
+                while (i < distinctRank.Length && distinctRank[i] <= item)
+                {
+                    i++;
+                }
+                rankList.Add(distinctRank.Length - i + 1);
+            }
+            return rankList;
+        }
+
+        private static List<int> GetRank_timeout(List<int> ranked, List<int> player)
         {
             var rankList = new List<int>();
             var rankStack = new Stack<int>();
@@ -51,7 +68,7 @@ namespace HackerRankCode
             return rankList;
         }
 
-        private static List<int> GetRank1(List<int> ranked, List<int> player)
+        private static List<int> GetRank_notowrking(List<int> ranked, List<int> player)
         {
             var rankList = new List<int>();
             var distinctRank = new List<int>();
