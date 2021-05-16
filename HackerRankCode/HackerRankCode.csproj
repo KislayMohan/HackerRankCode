@@ -95,6 +95,7 @@
     <Compile Include="StringEncryption.cs" />
     <Compile Include="SubArrayDivision.cs" />
     <Compile Include="SwapNode.cs" />
+    <Compile Include="TaumAndBirthday.cs" />
     <Compile Include="TreeProblems.cs" />
     <Compile Include="UtopianTree.cs" />
     <Compile Include="ValleyCount.cs" />
