@@ -48,6 +48,7 @@
     <Compile Include="AppendAndDelete.cs" />
     <Compile Include="ArrayRotation.cs" />
     <Compile Include="BetweenTwoSets.cs" />
+    <Compile Include="BiggerIsGreaterString.cs" />
     <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
     <Compile Include="ClimbingLeaderboard.cs" />

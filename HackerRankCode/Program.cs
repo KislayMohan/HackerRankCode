@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Text;
 
 namespace HackerRankCode
 {
@@ -98,7 +99,15 @@ namespace HackerRankCode
             //MinimumSwapToSort.MinimumSwapToSortFlow();
             //FindLCA.FindLCAFlow();
             //TaumAndBirthday.TaumAndBirthdayFlow();
-            
+            //var word = "abcd";
+            //char[] chrArr = (word.ToCharArray());
+            //var strbytes = Encoding.ASCII.GetBytes(word);
+            //foreach (var item in strbytes)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine(Encoding.ASCII.GetString(strbytes));
+            //BiggerIsGreaterString.BiggerIsGreaterStringFlow();
             Console.ReadLine();
         }
     }
