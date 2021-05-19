@@ -51,6 +51,7 @@
     <Compile Include="BiggerIsGreaterString.cs" />
     <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
+    <Compile Include="ChocolateFeast.cs" />
     <Compile Include="ClimbingLeaderboard.cs" />
     <Compile Include="DivisibleSumPairs.cs" />
     <Compile Include="EqualStack.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="JesseAndCookies.cs" />
     <Compile Include="LargestRectangle.cs" />
     <Compile Include="LinklistCycleDetection.cs" />
+    <Compile Include="LisaWorkbook.cs" />
     <Compile Include="MaxStackElement.cs" />
     <Compile Include="MinimumSwapToSort.cs" />
     <Compile Include="NewYearChaos.cs" />
