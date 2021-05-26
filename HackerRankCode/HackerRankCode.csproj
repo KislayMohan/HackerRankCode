@@ -51,6 +51,7 @@
     <Compile Include="BiggerIsGreaterString.cs" />
     <Compile Include="BreakingRecord.cs" />
     <Compile Include="CastleOnGrid.cs" />
+    <Compile Include="CavityMap.cs" />
     <Compile Include="ChocolateFeast.cs" />
     <Compile Include="ClimbingLeaderboard.cs" />
     <Compile Include="DivisibleSumPairs.cs" />
