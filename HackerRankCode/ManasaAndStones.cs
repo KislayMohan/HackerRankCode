@@ -23,7 +23,7 @@ namespace HackerRankCode
 
         private static List<int> Stones(int n, int a, int b)
         {
-            var result = new List<int>();
+            var result = new HashSet<int>();
             var smaller = Math.Min(a, b);
             int larger = Math.Max(a, b);
             for (int i = n - 1; i >= 0; i--)
@@ -31,7 +31,7 @@ namespace HackerRankCode
                 result.Add((smaller * i) + (larger * (n - 1 - i)));
             }
 
-            return result.Distinct().ToList();
+            return result.ToList();
         }
     }
 }
