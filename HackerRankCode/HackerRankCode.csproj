@@ -66,6 +66,7 @@
     <Compile Include="LargestRectangle.cs" />
     <Compile Include="LinklistCycleDetection.cs" />
     <Compile Include="LisaWorkbook.cs" />
+    <Compile Include="ManasaAndStones.cs" />
     <Compile Include="MaxStackElement.cs" />
     <Compile Include="MinimumSwapToSort.cs" />
     <Compile Include="NewYearChaos.cs" />
