@@ -115,6 +115,6 @@ namespace HackerRankCode
             //ManasaAndStones.ManasaAndStonesFlow();
             //GridSearch.GridSearchFlow();
             Console.ReadLine();
-        }        
+        }
     }
 }
