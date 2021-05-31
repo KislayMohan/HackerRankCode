@@ -24,9 +24,8 @@ namespace HackerRankCode
         {
             var fullHappy = true;
             var colourColl = new Dictionary<char, int>();
-            var previousHappy = false;
-            var colourChange = false;
-            for (int i = 0; i < b.Length; i++)
+            int i = 0;
+            for (; i < b.Length; i++)
             {
                 if (!colourColl.ContainsKey(b[i]))
                 {
@@ -38,41 +37,30 @@ namespace HackerRankCode
                 }
                 if (i >= 1 && fullHappy)
                 {
-                    if (b[i] == b[i - 1])
-                    {
-                        previousHappy = true;
-                        colourChange = false;
-                        continue;
-                    }
-                    else
-                    {
-                        colourChange = true;
-                    }
-
-                    if (!previousHappy && colourChange)
+                    if (colourColl[b[i - 1]] == 1)
                     {
                         fullHappy = false;
                     }
                 }
             }
-
             if (fullHappy)
             {
-                fullHappy = !colourChange;
+                fullHappy = colourColl[b[i - 1]] > 1; // For last element in string if its different from second last.
             }
 
             if (!colourColl.ContainsKey('_')) // No empty space
             {
                 if (fullHappy)
                 {
-                    return "YES";
+                    return "YES"; // All happy
                 }
-                return "NO";
+                return "NO"; // All not happy and no empty space for swap hence not possible
             }
 
+            // Below loop will handle cases with empty spaces.
             foreach (var item in colourColl)
             {
-                if (item.Key != '_' && item.Value == 1)
+                if (item.Key != '_' && item.Value == 1) // For any string if frequency is 1 then it cannot be happy as cannot pair.
                 {
                     return "NO";
                 }
