@@ -24,7 +24,182 @@ namespace HackerRankCode
 
             }
             Console.WriteLine("--------------------------------");
-            Median2(s, x);
+            MedianList(s, x);
+        }
+
+        private static void MedianList(string[] a, int[] x)
+        {
+            var posNumArr = new int[int.MaxValue / 2];
+            var negNumArr = new int[int.MaxValue / 2];
+            int max = -1, totalCount = 0, min = 1, posCount = 0, negCount = 0;
+            for (int i = 0; i < a.Count(); i++)
+            {
+                var num = Math.Abs(x[i]);
+                if (x[i] > max)
+                {
+                    max = x[i];
+                }
+                if (x[i] < min)
+                {
+                    min = x[i];
+                }
+                switch (a[i])
+                {
+                    case "a":
+                        if (num >= 0)
+                        {
+                            posNumArr[num]++;
+                            posCount++;
+                        }
+                        else
+                        {
+                            negNumArr[num]++;
+                            negCount++;
+                        }
+                        totalCount++;
+                        break;
+                    case "r":
+                        if (num >= 0)
+                        {
+                            if (posNumArr[num] > 0)
+                            {
+                                posNumArr[num]--;
+                                posCount--;
+                                totalCount--;
+                            }
+                        }
+                        else
+                        {
+                            if (negNumArr[num] > 0)
+                            {
+                                negNumArr[num]--;
+                                negCount--;
+                                totalCount--;
+                            }
+                        }
+                        break;
+                }
+                if (totalCount <= 0)
+                {
+                    Console.WriteLine("Wrong!");
+                    continue;
+                }
+
+                if (totalCount % 2 == 0) // 2 medians
+                {
+                    var medianIndex = totalCount / 2;
+                    if (negCount > medianIndex) // Median lies in negative set.
+                    {
+                        var counter = -1;
+                        var lastIter = -1;
+                        var currIter = Math.Abs(min);
+                        for (; currIter > 0; currIter--)
+                        {
+                            if (negNumArr[currIter] > 0)
+                            {
+                                counter += negNumArr[currIter];
+                                if (counter >= medianIndex)
+                                {
+                                    break;
+                                }
+                                lastIter = currIter;
+                            }
+                        }
+                        if (negNumArr[currIter] > 1)
+                        {
+                            Console.WriteLine(0 - currIter);
+                        }
+                        else
+                        {
+                            Console.WriteLine(decimal.Divide((long)0 - ((long)lastIter + (long)currIter), 2));
+                        }
+                    }
+                    else if (negCount == medianIndex) // one Median Lies in negative set and other in positive set
+                    {
+                        int posIndex = -1, negIndex = -1;
+                        for (int j = 0; j < posCount; j++)
+                        {
+                            if (posIndex == -1 && posNumArr[j] > 0)
+                            {
+                                posIndex = j;
+                            }
+                            if (negIndex == -1 && negNumArr[j] > 0)
+                            {
+                                negIndex = j;
+                            }
+                            if (posIndex != -1 && negIndex != -1)
+                            {
+                                break;
+                            }
+                        }
+                        Console.WriteLine(decimal.Divide((long)posIndex - (long)negIndex, 2));
+                    }
+                    else //Both median lies in positive set
+                    {
+                        var counter = negCount - 1;
+                        var lastIter = -1;
+                        var currIter = 0;
+                        for (; currIter <= max; currIter++)
+                        {
+                            if (posNumArr[currIter] > 0)
+                            {
+                                counter += posNumArr[currIter];
+                                if (counter >= medianIndex)
+                                {
+                                    break;
+                                }
+                                lastIter = currIter;
+                            }
+                        }
+                        if (negNumArr[currIter] > 1)
+                        {
+                            Console.WriteLine(currIter);
+                        }
+                        else
+                        {
+                            Console.WriteLine(decimal.Divide((long)lastIter + (long)currIter, 2));
+                        }
+                    }
+                }
+                else //1 Median
+                {
+                    var medianIndex = totalCount / 2;
+                    if (negCount > 0 && negCount >= medianIndex) // Median lies in negative set.
+                    {
+                        int counter = -1;
+                        var currIter = Math.Abs(min);
+                        for (; currIter > 0; currIter--)
+                        {
+                            if (negNumArr[currIter] > 0)
+                            {
+                                counter += negNumArr[currIter];
+                                if (counter >= medianIndex)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        Console.WriteLine(0 - currIter);
+                    }
+                    else //Median lies in positive set.
+                    {
+                        var counter = negCount - 1;
+                        var currIter = 0;
+                        for (; currIter < max; currIter++)
+                        {
+                            if (posNumArr[currIter] > 0)
+                            {
+                                counter += posNumArr[currIter];
+                                if (counter >= medianIndex)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        Console.WriteLine(currIter);
+                    }
+                }
+            }
         }
 
         private static void Median2(string[] a, int[] x)
