@@ -117,6 +117,7 @@ namespace HackerRankCode
             //HappyLadyBug.HappyLadyBugFlow();
             //StrangeCounter.StrangeCounterFlow();
             //DownToZero.DownToZeroSol();
+            //MinimumAverageWaitingTime.MinimumAverageWaitingTimeSol();
             Console.ReadLine();
         }
     }
