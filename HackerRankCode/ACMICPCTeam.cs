@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HackerRankCode
 {
@@ -26,14 +23,33 @@ namespace HackerRankCode
         private static List<int> AcmTeam(List<string> topic)
         {
             var result = new List<int>();
-            int maxSubCount = 0, maxTeamCount = 0;
+            int maxTopicCount = 0, maxTeamCount = 0;
+            var topicCount = topic[0].Length;
             for (int i = 0; i < topic.Count - 1; i++)
             {
                 for (int j =  i + 1; j < topic.Count; j++)
                 {
-
+                    var tempTopicMax = 0;
+                    for (int k = 0; k < topicCount; k++)
+                    {
+                        if (topic[i][k] == '1' || topic[j][k] == '1')
+                        {
+                            tempTopicMax++;
+                        }
+                    }
+                    if (maxTopicCount < tempTopicMax)
+                    {
+                        maxTopicCount = tempTopicMax;
+                        maxTeamCount = 1;
+                    }
+                    else if(maxTopicCount == tempTopicMax)
+                    {
+                        maxTeamCount++;
+                    }
                 }
             }
+            result.Add(maxTopicCount);
+            result.Add(maxTeamCount);
             return result;
         }
     }

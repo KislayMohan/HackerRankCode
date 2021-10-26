@@ -118,6 +118,11 @@ namespace HackerRankCode
             //StrangeCounter.StrangeCounterFlow();
             //DownToZero.DownToZeroSol();
             //MinimumAverageWaitingTime.MinimumAverageWaitingTimeSol();
+            //ExtraLongFactorial.ExtraLongFactorialSol();
+            //SherlockAndSquares.SherlockAndSquaresSol();
+            //JumpingOnTheClouds.JumpingOnTheCloudsSol();
+            //ACMICPCTeam.ACMICPCTeamFlow();
+            //KaprekarNumbers.KaprekarNumbersFlow();
             Console.ReadLine();
         }
     }
