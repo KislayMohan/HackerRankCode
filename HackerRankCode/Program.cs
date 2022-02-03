@@ -123,6 +123,11 @@ namespace HackerRankCode
             //JumpingOnTheClouds.JumpingOnTheCloudsSol();
             //ACMICPCTeam.ACMICPCTeamFlow();
             //KaprekarNumbers.KaprekarNumbersFlow();
+            //AbsolutePermutation.AbsolutePermutationSol();
+            //BomberMan.BomberManSol();
+            //AmazonTest.Meeting();
+            //MicrosoftTest.ProblemStmnt();
+            GrabTest.GrabTestSol2();
             Console.ReadLine();
         }
     }
