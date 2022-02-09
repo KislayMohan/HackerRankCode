@@ -127,7 +127,8 @@ namespace HackerRankCode
             //BomberMan.BomberManSol();
             //AmazonTest.Meeting();
             //MicrosoftTest.ProblemStmnt();
-            GrabTest.GrabTestSol2();
+            //GrabTest.GrabTestSol2();
+            MyAmazonTest.CountDecreasingRatingsSol();
             Console.ReadLine();
         }
     }
