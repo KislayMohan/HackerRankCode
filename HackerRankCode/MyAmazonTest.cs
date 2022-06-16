@@ -14,6 +14,34 @@ namespace HackerRankCode
 
         private static long CountDecreasingRatings(List<int> ratings)
         {
+            if (ratings == null || ratings.Count == 0)
+            {
+                return 0;
+            }
+            int[] tempRatings = new int[ratings.Count];
+            tempRatings[0] = 1;
+            for (int i = 1; i < ratings.Count; i++)
+            {
+                if (ratings[i] == ratings[i - 1] - 1)
+                {
+                    tempRatings[i] = tempRatings[i - 1] + 1;
+                }
+                else
+                {
+                    tempRatings[i] = 1;
+                }
+            }
+
+            int result = 0;
+            foreach (var item in tempRatings)
+            {
+                result += item;
+            }
+            return result;
+        }
+
+        private static long CountDecreasingRatings1(List<int> ratings)
+        {
             var cnt = 0;
             if (ratings.Count <= 1)
             {

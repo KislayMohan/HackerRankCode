@@ -128,7 +128,10 @@ namespace HackerRankCode
             //AmazonTest.Meeting();
             //MicrosoftTest.ProblemStmnt();
             //GrabTest.GrabTestSol2();
-            MyAmazonTest.CountDecreasingRatingsSol();
+            //MyAmazonTest.CountDecreasingRatingsSol();
+            //ReducedString.ReducedStringSol();
+            //StrongPassword.StrongPasswordSol();
+            //AlternatingCharacters.AlternatingCharactersSol();
             Console.ReadLine();
         }
     }
