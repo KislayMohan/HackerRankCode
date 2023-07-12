@@ -133,6 +133,13 @@ namespace HackerRankCode
             //StrongPassword.StrongPasswordSol();
             //AlternatingCharacters.AlternatingCharactersSol();
             //ChocolateDistribution.ChocolateDistributionSol();
+            //RazerTest.MeetupSchedule();
+            //TwoCharacterAlternateString.TwoCharacterAlternateStringSol();
+            //MagicSquare.MagicSquareSol();
+            //PalindromicSubstring.LargestPalindromicSubstring("abracecars");
+            //PalindromicSubstring.LargestFour(new int[] { 4, 5, -2, 3, 1, 2, 6, 6 });
+            //LinklistCycleDetection.GraphIntersection();
+            CoinChange.CoinChangeSol();
             Console.ReadLine();
         }
     }
