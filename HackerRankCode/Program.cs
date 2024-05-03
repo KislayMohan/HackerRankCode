@@ -139,7 +139,11 @@ namespace HackerRankCode
             //PalindromicSubstring.LargestPalindromicSubstring("abracecars");
             //PalindromicSubstring.LargestFour(new int[] { 4, 5, -2, 3, 1, 2, 6, 6 });
             //LinklistCycleDetection.GraphIntersection();
-            CoinChange.CoinChangeSol();
+            //CoinChange.CoinChangeSol();
+            //VendorStall.VendorStallSol();
+            //PerfectRiceBag.PerfectRiceBagSol();
+            //AmazonMinErrors.AmazonMinErrorsSol();
+            RainTapping.RainTappingSol();
             Console.ReadLine();
         }
     }

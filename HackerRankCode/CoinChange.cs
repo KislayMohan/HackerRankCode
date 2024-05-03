@@ -1,4 +1,6 @@
-﻿namespace HackerRankCode
+﻿using System.Collections.Generic;
+
+namespace HackerRankCode
 {
     internal class CoinChange
     {
@@ -30,6 +32,9 @@
                     combination[j] += combination[j - c[i]];
                 }
             }
+
+            //System.Collections.Generic.PriorityQueue
+            //LinkedList<long> list = new LinkedList<long>();
             return combination[n];
         }
     }
