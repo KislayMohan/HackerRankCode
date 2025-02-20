@@ -1,5 +1,6 @@
 ﻿using HackerRankCode.Arrays;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -143,8 +144,357 @@ namespace HackerRankCode
             //VendorStall.VendorStallSol();
             //PerfectRiceBag.PerfectRiceBagSol();
             //AmazonMinErrors.AmazonMinErrorsSol();
-            RainTapping.RainTappingSol();
+            //RainTapping.RainTappingSol();
+            //var ans = Occurence(6, new int[] { 4, 4, 7, 8, 8, 9 });
+            //var ans = LongestPalindrome("aacabdkacaa");
+            //Console.WriteLine(ans);
+            //int[] nums = { -102, 24, -461, -146 };
+            //Console.WriteLine(ThreeSumClosest(nums, -711));
+            int[] nums = new int[] { 100, 4, 200, 1, 3, 2 };
+            //Console.WriteLine(WaysToPartition(nums, 3));
+            //Console.WriteLine(LongestConsecutive(nums));
+            var s = "abcaabc";
+            int[][] queries = new int[][] { new int[] { 0, 0 }, new int[] { 1, 4}, new int[] { 2, 5}, new int[] { 0, 5} };
+            //Console.WriteLine(SameEndSubstringCount(s, queries));
+            BuildPrefixSum(s, 'b');
             Console.ReadLine();
+        }
+
+        public static int[] BuildPrefixSum(string s, char target)
+        {
+            int n = s.Length;
+            int[] prefixSum = new int[n];
+            prefixSum[0] = (s[0] == target) ? 1 : 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                prefixSum[i] = prefixSum[i - 1] + ((s[i] == target) ? 1 : 0);
+            }
+
+            return prefixSum;
+        }
+
+        public static int[] SameEndSubstringCount(string s, int[][] queries)
+        {
+            int[] res = new int[queries.Count()];
+            for (int i = 0; i < queries.Count(); i++)
+            {
+                var charCountDict = new Dictionary<char, int>();
+                for (int j = queries[i][0]; j <= queries[i][1]; j++)
+                {
+                    if (charCountDict.ContainsKey(s[j]))
+                    {
+                        charCountDict[s[j]]++;
+                    }
+                    else
+                    {
+                        charCountDict[s[j]] = 1;
+                    }
+                }
+                var count = queries[i][1] - queries[i][0] + 1;
+                foreach (var item in charCountDict)
+                {
+                    if (item.Value > 1)
+                    {
+                        count += (item.Value * (item.Value - 1)) / 2;
+                    }
+                }
+                res[i] = count;
+            }
+
+            return res;
+        }
+
+        public static int LongestConsecutive(int[] nums)
+        {
+            HashSet<int> num_set = new HashSet<int>(nums);
+            int longestStreak = 0;
+            foreach (int num in num_set)
+            {
+                if (!num_set.Contains(num + 1))
+                {
+                    int currentNum = num;
+                    int currentStreak = 1;
+                    while (num_set.Contains(currentNum - 1))
+                    {
+                        currentNum -= 1;
+                        currentStreak += 1;
+                    }
+
+                    longestStreak = Math.Max(longestStreak, currentStreak);
+                }
+            }
+
+            return longestStreak;
+        }
+
+        public static int WaysToPartition(int[] nums, int k)
+        {
+            var leftSum = new int[nums.Length];
+            var rightSum = new int[nums.Length];
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i == 0)
+                {
+                    leftSum[i] = nums[i];
+                    rightSum[nums.Length - i - 1] = nums[nums.Length - i - 1];
+                }
+                else
+                {
+                    leftSum[i] = leftSum[i - 1] + nums[i];
+                    rightSum[nums.Length - i - 1] = nums[nums.Length - i - 1] + rightSum[nums.Length - i];
+                }
+            }
+            int ways = 0;
+            return ways;
+        }
+
+        public static int MyAtoi(string s)
+        {
+            var result = 0;
+            var negative = false;
+            int i = 0;
+            while (i < s.Length && s[i] == ' ')
+            {
+                i++;
+            }
+
+            if (i < s.Length && s[i] == '+')
+            {
+                negative = false;
+                i++;
+            }
+            else if (i < s.Length && s[i] == '-')
+            {
+                negative = true;
+                i++;
+            }
+
+            while (i < s.Length && char.IsDigit(s[i]))
+            {
+                if (result > int.MaxValue / 10 ||
+                    (result == int.MaxValue / 10 &&
+                     s[i] - '0' > int.MaxValue % 10))
+                {
+                    return negative ? int.MinValue : int.MaxValue;
+                }
+
+                result = result * 10 + (s[i++] - '0');
+            }
+
+            return negative ? result * -1 : result;
+        }
+
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            var longestPrefix = new StringBuilder();
+            var counter = 0;
+            while (true)
+            {
+                var currentChar = strs[0][counter];
+                int i = 1;
+                for (; i < strs.Length; i++)
+                {
+                    if (strs[i][counter] != currentChar)
+                    {
+                        break;
+                    }
+                }
+                if (i == strs.Length)
+                {
+                    longestPrefix.Append(currentChar);
+                    counter++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return longestPrefix.ToString();
+        }
+
+        public static List<List<int>> ThreeSum(int[] nums)
+        {
+            Array.Sort(nums);
+            List<List<int>> result = new List<List<int>>();
+
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+                if (i == 0 || (nums[i] != nums[i - 1]))
+                {
+                    var low = i + 1;
+                    var high = nums.Length - 1;
+                    var sum = 0-nums[i];
+                    while (low < high)
+                    {
+                        if (nums[low] + nums[high] == sum)
+                        {
+                            result.Add(new List<int> { nums[i], nums[low], nums[high] });
+                            while (low < high && nums[low] == nums[low + 1])
+                            {
+                                low++;
+                            }
+                            while (low < high && nums[high] == nums[high - 1])
+                            {
+                                high--;
+                            }
+                            low++;
+                            high--;
+                        }
+                        else if (nums[low] + nums[high] > sum)
+                        {
+                            high--;
+                        }
+                        else
+                        {
+                            low++;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static int ThreeSumClosest(int[] nums, int target)
+        {
+            Array.Sort(nums);
+            var diff = int.MaxValue;
+            var sum = int.MaxValue;
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+                var low = i + 1;
+                var high = nums.Length - 1;
+                while (low < high)
+                {
+                    sum = nums[i] + nums[low] + nums[high];
+                    if (Math.Abs(sum - target) < Math.Abs(diff))
+                    {
+                        diff = target - sum;
+                    }
+                    if (sum < target)
+                    {
+                        low++;
+                    }
+                    else
+                    {
+                        high--;
+                    }
+                }
+            }
+
+            return target - diff;
+        }
+
+        public static string LongestPalindrome(string s)
+        {
+            var n = s.Length;
+            int[] hashTable = new int[128];
+            System.Array.Fill(hashTable, 0);
+            var isPalindrome = true;
+            for (int i = 0; i < n; i++)
+            {
+                hashTable[(int)s[i]] = i;
+            }
+            var start = 0;
+            var end = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (hashTable[(int)s[i]] > 0)
+                {
+                    var len = hashTable[(int)s[i]] - i;
+                    isPalindrome = true;
+                    for (int j = 0; j < len; j++)
+                    {
+                        if (s[i + j] != s[hashTable[(int)s[i]] - j])
+                        {
+                            isPalindrome = false;
+                            break;
+                        }
+                    }
+                    if (isPalindrome && len > end - start)
+                    {
+                        start = i;
+                        end = hashTable[(int)s[i]];
+                    }
+                }
+            }
+            if (isPalindrome)
+            {
+                return s.Substring(start, end + 1 - start);
+            }
+            else
+            {
+                return "not possible";
+            }
+        }
+
+        public static int[] Occurence(int input1, int[] input2)
+        {
+            var result = new List<int>();
+            var visit = new Dictionary<int, bool>();
+            for (int i = 0; i < input1; i++)
+            {
+                if (visit.ContainsKey(input2[i]))
+                {
+                    result.Add(input2[i]);
+                }
+                else
+                {
+                    visit[input2[i]] = true;
+                }
+            }
+            if (result.Count > 0)
+            {
+                result.Sort();
+            }
+            else
+            {
+                result.Add(-1);
+            }
+
+            return result.ToArray();
+        }
+
+        public class Result
+        {
+            public int output1;
+            public string output2;
+        }
+
+        public static Result HelpProfessor(string input)
+        {
+            var longestStr = new StringBuilder();
+            var temp = new StringBuilder();
+            var currentChar = input[input.Length - 1];
+            for (int i = input.Length - 2; i >= 0; i--)
+            {
+                if (input[i] == currentChar)
+                {
+                    if (temp.Length == 0)
+                    {
+                        temp.Append(currentChar);
+                    }
+                    temp.Append(input[i]);
+                }
+                else
+                {
+                    if (temp.Length > longestStr.Length)
+                    {
+                        longestStr = temp;
+                    }
+                    temp = new StringBuilder();
+                    currentChar = input[i];
+                }
+            }
+            if (temp.Length > longestStr.Length)
+            {
+                longestStr = temp;
+            }
+            var results = new List<Result>();
+            return new Result() { output1 = longestStr.Length, output2 = longestStr.ToString() };
         }
     }
 }
