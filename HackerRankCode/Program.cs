@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -150,14 +151,249 @@ namespace HackerRankCode
             //Console.WriteLine(ans);
             //int[] nums = { -102, 24, -461, -146 };
             //Console.WriteLine(ThreeSumClosest(nums, -711));
-            int[] nums = new int[] { 100, 4, 200, 1, 3, 2 };
+            //int[] nums = new int[] { 100, 4, 200, 1, 3, 2 };;
             //Console.WriteLine(WaysToPartition(nums, 3));
             //Console.WriteLine(LongestConsecutive(nums));
-            var s = "abcaabc";
-            int[][] queries = new int[][] { new int[] { 0, 0 }, new int[] { 1, 4}, new int[] { 2, 5}, new int[] { 0, 5} };
+            //var s = "abcaabc";
+            //int[][] queries = new int[][] { new int[] { 0, 0 }, new int[] { 1, 4}, new int[] { 2, 5}, new int[] { 0, 5} };
             //Console.WriteLine(SameEndSubstringCount(s, queries));
-            BuildPrefixSum(s, 'b');
+            //BuildPrefixSum(s, 'b');
+            //Console.WriteLine(RankTeams(new string[5] { "ABC", "ACB", "ABC", "ACB", "ACB" }));
+            //int[][] envelope = new int[][] { new int[] { 5,4 }, new int[] { 6,5 }, new int[] { 6,7}, new int[] { 2,3} };
+            //IList<String> str = new List<String>() { "a" };
+            //Console.WriteLine(MaxEnvelopes(envelope));
+            //CallStockPrice();
+            //new SegmentTree().SegmentTreeSol();
+            //new WordLadder().WordLadderSol();
+            //TopKFrequentElements.TopKFrequent(new int[] { 3,0,1,0 }, 1);
+            //GroupAnagrams.GroupAnagramsMethod(new string[] { "eat", "tea", "tan", "ate", "nat", "bat" });
+            //Console.WriteLine(RotatedSortedArray.Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 0));
+            //var result = MaxRestTime("Tue 3:30-18:15\nWed 15:14-22:40\nSun 1:00-4:00\nMon 5:00-13:00\nMon 15:00-21:00\nSat 10:00-24:00\nTue 19:00-20:00\nWed 4:25-15:14\nThu 00:00-23:59\nFri 16:30-23:50\nSat 2:00-6:00\nSun 10:00-20:00\nFri 5:00-10:00\nTue 15:00-21:00");
+            //Console.WriteLine(new LetterCombination().LetterCombinations("23"));
+            //var classes = new int[4][] { new int[] { 2, 4 }, new int[] { 3, 9 }, new int[] { 4, 5 },  new int[] { 2, 10 } };
+            //Console.WriteLine(new MaximumPassAverage().MaxAverageRatio(classes, 4));
+            Console.WriteLine(new DivideSolution().Divide(93706, 157));
             Console.ReadLine();
+        }
+
+        public static int MaxRestTime(string input)
+        {
+            Dictionary<string, int> dayToIndex = new() {
+            {"Mon", 0}, {"Tue", 1}, {"Wed", 2}, {"Thu", 3}, {"Fri", 4}, {"Sat", 5}, {"Sun", 6}};
+
+            List<(int start, int end)> weekMeetings = new();
+
+            foreach (var line in input.Split('\n'))
+            {
+                var parts = line.Split(' ');
+                var day = parts[0];
+                var times = parts[1].Split('-');
+
+                int dayIndex = dayToIndex[day];
+                int start = TimeToMinutes(times[0]) + dayIndex * 24 * 60;
+                int end = TimeToMinutes(times[1]) + dayIndex * 24 * 60;
+
+                weekMeetings.Add((start, end));
+            }
+
+            // Sort and merge overlapping meetings (though problem says they don't overlap)
+            var sorted = weekMeetings.OrderBy(m => m.start).ToList();
+
+            int maxRest = 0;
+            int prevEnd = 0;
+
+            foreach (var meeting in sorted)
+            {
+                maxRest = Math.Max(maxRest, meeting.start - prevEnd);
+                prevEnd = meeting.end;
+            }
+
+            // Also consider time from last meeting to end of week
+            int weekEnd = 7 * 24 * 60;
+            maxRest = Math.Max(maxRest, weekEnd - prevEnd);
+
+            return maxRest;
+        }
+
+        private static int TimeToMinutes(string time)
+        {
+            var parts = time.Split(':');
+            int hours = int.Parse(parts[0]);
+            int minutes = int.Parse(parts[1]);
+            return hours * 60 + minutes;
+        }
+
+        public int MajorityElement(int[] arr)
+        {
+            var lookup = new Dictionary<int, int>();
+            foreach (var num in arr)
+            {
+                if (lookup.ContainsKey(num))
+                {
+                    lookup[num]++;
+                }
+                else
+                {
+                    lookup[num] = 1;
+                }
+                if (lookup[num] > arr.Count() / 2)
+                {
+                    return num;
+                }
+            }
+            return -1;
+        }
+
+        private static void CallStockPrice()
+        {
+            Console.WriteLine("null");
+            var stockPrice = new StockPrice();
+            /*stockPrice.Update(1, 10);
+            Console.WriteLine("null");
+            stockPrice.Update(2, 5);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Current());
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(1, 3);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(4, 2);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Minimum());*/
+            stockPrice.Update(38, 2308);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Current());
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(47, 7876);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Minimum());
+            stockPrice.Update(58, 1866);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Current());
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(43, 121);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(40, 5339);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Maximum());
+            Console.WriteLine(stockPrice.Current());
+            stockPrice.Update(32, 5339);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Current());
+            Console.WriteLine(stockPrice.Minimum());
+            stockPrice.Update(43, 6414);
+            Console.WriteLine("null");
+            stockPrice.Update(49, 9369);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Minimum());
+            Console.WriteLine(stockPrice.Minimum());
+            stockPrice.Update(36, 3192);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Current());
+            stockPrice.Update(48, 1006);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Maximum());
+            stockPrice.Update(53, 8013);
+            Console.WriteLine("null");
+            Console.WriteLine(stockPrice.Minimum());
+        }
+
+        public static int MaxEnvelopes(int[][] envelopes)
+        {
+            if (envelopes == null || envelopes.Length == 0) return 0;
+
+            // Step 1: Sort the envelopes
+            Array.Sort(envelopes, (a, b) => {
+                if (a[0] == b[0]) return b[1] - a[1]; // Sort by height in descending order if widths are equal
+                return a[0] - b[0]; // Otherwise, sort by width in ascending order
+            });
+
+            // Step 2: Find LIS (Longest Increasing Subsequence) based on height
+            List<int> lis = new List<int>();
+
+            foreach (var envelope in envelopes)
+            {
+                int height = envelope[1];
+                int index = BinarySearch(lis, height);
+
+                if (index == lis.Count)
+                {
+                    lis.Add(height); // Extend LIS
+                }
+                else
+                {
+                    lis[index] = height; // Replace element to maintain LIS property
+                }
+            }
+
+            return lis.Count();
+        }
+
+        private static int BinarySearch(List<int> lis, int target)
+        {
+            int left = 0, right = lis.Count - 1;
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (lis[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+            return left;
+        }
+
+        public static string RankTeams(string[] votes)
+        {
+            if (votes == null || votes.Length == 0)
+                return string.Empty;
+
+            int teamCount = votes[0].Length;
+            Dictionary<char, int[]> rankMap = new Dictionary<char, int[]>();
+
+            // Initialize ranking dictionary
+            foreach (char team in votes[0])
+            {
+                rankMap[team] = new int[teamCount];
+            }
+            // Count the rankings for each team
+            foreach (string vote in votes)
+            {
+                for (int i = 0; i < vote.Length; i++)
+                {
+                    rankMap[vote[i]][i]++;
+                }
+            }
+
+            // Sort teams based on ranking rules
+            var sortedTeams = rankMap.Keys.ToList();
+            sortedTeams.Sort((a, b) => {
+                for (int i = 0; i < teamCount; i++)
+                {
+                    if (rankMap[a][i] != rankMap[b][i])
+                        return rankMap[b][i] - rankMap[a][i]; // Higher votes first
+                }
+                return a.CompareTo(b); // Alphabetical order if tie persists
+            });
+
+            return new string(sortedTeams.ToArray());
         }
 
         public static int[] BuildPrefixSum(string s, char target)
@@ -312,79 +548,6 @@ namespace HackerRankCode
                 }
             }
             return longestPrefix.ToString();
-        }
-
-        public static List<List<int>> ThreeSum(int[] nums)
-        {
-            Array.Sort(nums);
-            List<List<int>> result = new List<List<int>>();
-
-            for (int i = 0; i < nums.Length - 2; i++)
-            {
-                if (i == 0 || (nums[i] != nums[i - 1]))
-                {
-                    var low = i + 1;
-                    var high = nums.Length - 1;
-                    var sum = 0-nums[i];
-                    while (low < high)
-                    {
-                        if (nums[low] + nums[high] == sum)
-                        {
-                            result.Add(new List<int> { nums[i], nums[low], nums[high] });
-                            while (low < high && nums[low] == nums[low + 1])
-                            {
-                                low++;
-                            }
-                            while (low < high && nums[high] == nums[high - 1])
-                            {
-                                high--;
-                            }
-                            low++;
-                            high--;
-                        }
-                        else if (nums[low] + nums[high] > sum)
-                        {
-                            high--;
-                        }
-                        else
-                        {
-                            low++;
-                        }
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public static int ThreeSumClosest(int[] nums, int target)
-        {
-            Array.Sort(nums);
-            var diff = int.MaxValue;
-            var sum = int.MaxValue;
-            for (int i = 0; i < nums.Length - 2; i++)
-            {
-                var low = i + 1;
-                var high = nums.Length - 1;
-                while (low < high)
-                {
-                    sum = nums[i] + nums[low] + nums[high];
-                    if (Math.Abs(sum - target) < Math.Abs(diff))
-                    {
-                        diff = target - sum;
-                    }
-                    if (sum < target)
-                    {
-                        low++;
-                    }
-                    else
-                    {
-                        high--;
-                    }
-                }
-            }
-
-            return target - diff;
         }
 
         public static string LongestPalindrome(string s)
