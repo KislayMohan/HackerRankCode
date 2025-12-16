@@ -172,7 +172,8 @@ namespace HackerRankCode
             //Console.WriteLine(new LetterCombination().LetterCombinations("23"));
             //var classes = new int[4][] { new int[] { 2, 4 }, new int[] { 3, 9 }, new int[] { 4, 5 },  new int[] { 2, 10 } };
             //Console.WriteLine(new MaximumPassAverage().MaxAverageRatio(classes, 4));
-            Console.WriteLine(new DivideSolution().Divide(93706, 157));
+            //Console.WriteLine(new DivideSolution().Divide(93706, 157));
+            Console.WriteLine(new DecodeStringSol().DecodeString("3[2[2[ab]2[cd]]]"));
             Console.ReadLine();
         }
 
