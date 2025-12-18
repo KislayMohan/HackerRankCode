@@ -173,7 +173,9 @@ namespace HackerRankCode
             //var classes = new int[4][] { new int[] { 2, 4 }, new int[] { 3, 9 }, new int[] { 4, 5 },  new int[] { 2, 10 } };
             //Console.WriteLine(new MaximumPassAverage().MaxAverageRatio(classes, 4));
             //Console.WriteLine(new DivideSolution().Divide(93706, 157));
-            Console.ReadLine();
+            Console.WriteLine(new ConcatenateNonZeroDigitsandMultiplybySum().SumAndMultiply1("83653355979889175588", [[0, 19]]));
+
+            HashSet<int> set = new HashSet<int>();
         }
 
         public static int MaxRestTime(string input)

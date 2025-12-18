@@ -15,24 +15,24 @@ namespace HackerRankCode
                 return b[0].CompareTo(a[0]);
             });
             int count = 0;
-            int first = -1;
-            int second = -1;
+            int secondLast = -1;
+            int last = -1;
             foreach (var interval in intervals)
             {
                 int start = interval[0];
                 int end = interval[1];
-                if (first >= start)
+                if (secondLast >= start)
                     continue;
-                else if (second >= start)
+                else if (last >= start)
                 {
-                    first = second;
-                    second = end;
+                    secondLast = last;
+                    last = end;
                     count++;
                 }
                 else
                 {
-                    first = end - 1;
-                    second = end;
+                    secondLast = end - 1;
+                    last = end;
                     count += 2;
                 }
             }
